@@ -1,0 +1,53 @@
+package ml.ledv.textanalyzerbascilv.service;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Implementation of @link {@link FileHandler} interface.
+ *
+ * @author Denis Lesheniuk
+ * @version 1.0
+ **/
+public class FileHandlerImpl implements FileHandler{
+
+    /**
+     * Extracts text from a file.
+     * @param filePath real file path
+     * @return text in String format
+
+     */
+    public String textExtractor(String filePath) {
+        String text = "";
+        if(fileValidation(filePath)) {
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)))) {
+                while (bufferedReader.ready())
+                    text += bufferedReader.readLine() + "\n";
+            } catch (IOException exc) {
+                exc.printStackTrace();
+            }
+        }
+        return text;
+    }
+
+    /**
+     * File validation
+     * @param filePath real file path
+     * @return true if the file is validated, else @return false
+
+     */
+    private boolean fileValidation(String filePath){
+        if(filePath.length() == 0) {
+            System.out.println("Emtpy file path!");
+            return false;
+        }
+        if(!filePath.endsWith(".txt")){
+            System.out.println("Invalid file format!");
+            return false;
+        }
+        return true;
+
+    }
+}

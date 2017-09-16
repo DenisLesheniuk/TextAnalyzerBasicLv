@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Implementation of @link {@link FileHandler} interface.
+ * Implementation of {@link FileHandler} interface.
  *
  * @author Denis Lesheniuk
  * @version 1.0

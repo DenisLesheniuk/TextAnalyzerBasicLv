@@ -5,24 +5,25 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
 /**
  * Implementation of {@link FileHandler} interface.
+ * Intended to extract text from files in the resources folder.
  *
  * @author Denis Lesheniuk
  * @version 1.0
  **/
-public class FileHandlerImpl implements FileHandler{
-
+public class FileHandlerImplForResources implements FileHandler {
     /**
      * Extracts text from a file.
-     * @param filePath is an absolute path
+     * @param filePath is a relative path.
      * @return text in String format
 
      */
     public String textExtractor(String filePath) {
         String text = "";
         if(fileValidation(filePath)) {
-            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"))) {
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/" + filePath), "UTF-8"))) {
                 while (bufferedReader.ready())
                     text += bufferedReader.readLine() + "\n";
             } catch (IOException exc) {
@@ -34,7 +35,7 @@ public class FileHandlerImpl implements FileHandler{
 
     /**
      * File validation
-     * @param filePath is an absolute path
+     * @param filePath is a relative path.
      * @return true if the file is validated, else @return false
 
      */

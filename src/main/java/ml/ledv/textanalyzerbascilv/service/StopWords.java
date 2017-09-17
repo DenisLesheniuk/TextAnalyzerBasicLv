@@ -1,5 +1,11 @@
 package ml.ledv.textanalyzerbascilv.service;
 
+/**
+ * Service for receiving stop words in the format String.
+ *
+ * @author Denis Lesheniuk
+ * @version 1.0
+ * **/
 public class StopWords {
     FileHandler fileHandler;
 
@@ -8,7 +14,7 @@ public class StopWords {
     private String cojunctions;
 
     public StopWords(){
-        this.fileHandler = new FileHandlerImpl();
+        this.fileHandler = new FileHandlerImplForResources();
         this.pronouns = fileHandler.textExtractor("pronouns.txt");
         this.prepositions = fileHandler.textExtractor("prepositions.txt");
         this.cojunctions = fileHandler.textExtractor("conjunctions.txt");

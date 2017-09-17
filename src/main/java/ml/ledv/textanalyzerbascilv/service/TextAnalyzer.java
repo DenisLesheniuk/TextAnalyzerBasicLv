@@ -8,5 +8,4 @@ package ml.ledv.textanalyzerbascilv.service;
 public interface TextAnalyzer {
     public String topTenRepeatingWords(String text);
     public String  BracketChecker(String text);
-    public String checkText(String text);
 }

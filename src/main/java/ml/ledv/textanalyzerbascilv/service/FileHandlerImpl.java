@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
  * @version 1.0
  **/
 public class FileHandlerImpl implements FileHandler{
-
+    private boolean fileOk = false;
     /**
      * Extracts text from a file.
      * @param filePath is an absolute path
@@ -41,13 +41,20 @@ public class FileHandlerImpl implements FileHandler{
     private boolean fileValidation(String filePath){
         if(filePath.length() == 0) {
             System.out.println("Emtpy file path!");
-            return false;
+            fileOk = false;
+            return fileOk;
         }
         if(!filePath.endsWith(".txt")){
             System.out.println("Invalid file format!");
-            return false;
+            fileOk = false;
+            return fileOk;
         }
-        return true;
+        fileOk = true;
+        return fileOk;
 
+    }
+
+    public boolean isFileOk() {
+        return fileOk;
     }
 }

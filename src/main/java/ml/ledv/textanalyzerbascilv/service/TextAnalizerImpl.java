@@ -1,10 +1,8 @@
 package ml.ledv.textanalyzerbascilv.service;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class TextAnalizerImpl implements TextAnalyzer {
 
@@ -15,23 +13,32 @@ public class TextAnalizerImpl implements TextAnalyzer {
     }
 
     @Override
-    public String topTenRepeatingWords(String text) {
+    public List <Map.Entry<String, Integer>> topTenRepeatingWords(String text) {
         String cleaneText = excludeSpecifiedWords(text);
         String[] words = cleaneText.split("[^А-Яа-я+-]+");
         Map<String, Integer> reiting = new HashMap<>();
         for(String word: words){
-            if(reiting.containsKey(word))
-                reiting.put(word,  reiting.get(word) + 1);
-                else if(word != null)reiting.put(word, 0);
+            if(!word.equals("")&&!word.equals("-")) {
+               //word = word.toLowerCase();
+                if (reiting.containsKey(word))
+                    reiting.put(word, reiting.get(word) + 1);
+                else reiting.put(word, 0);
+            }
         }
-        System.out.println(reiting);
-        return null;
+        List<Map.Entry<String, Integer>> list = reiting.entrySet().stream()
+                .sorted((e1, e2) -> -e1.getValue().compareTo(e2.getValue()))
+                .collect(Collectors.toList());
+
+
+        return list;
     }
 
     @Override
     public String BracketChecker(String text) {
         return null;
     }
+
+
     /**
      * The method excludes from text a number of predefined words.
      * It depends on {@link StopWords} class, with the help of which, it receives the specified words in the string format.

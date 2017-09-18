@@ -44,7 +44,5 @@ public class FileHandlerImplForResources implements FileHandler {
         return fileOk;
     }
 
-    public boolean isFileOk() {
-        return fileOk;
-    }
+
 }

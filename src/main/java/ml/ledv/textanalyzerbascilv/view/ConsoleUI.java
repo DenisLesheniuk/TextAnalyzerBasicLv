@@ -19,12 +19,12 @@ ProcessController processController;
     }
 
     public void start(){
-      System.out.println("Привет мир!!!");
+      System.out.println("Hello Wolrld!!!");
       System.out.println("Text Analizer v.1.0");
 
         while(!processController.isProcess()) {
-            System.out.println("Для начала анализа текста введите путь к файлу :\n" +
-                    "Пример : F://file_name.txt");
+            System.out.println("To start the analysis, specify the path to the file :\n" +
+                    "Example : F://file_name.txt");
             Scanner scanner = new Scanner(System.in);
             String path = scanner.nextLine();
             processController.doAnalize(path);

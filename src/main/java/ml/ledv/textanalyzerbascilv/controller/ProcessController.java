@@ -33,18 +33,20 @@ public class ProcessController {
             process = false;
             return;
         }
+
+        System.out.println("Top-10 most common words: \n");
         process = true;
         String text = fileHandler.textExtractor(path);
         TextAnalyzer textAnalyzer = new TextAnalizerImpl();
         List<Map.Entry<String, Integer>> sortedReiting = textAnalyzer.topTenRepeatingWords(text);
         int count = 0;
         for(Map.Entry<String, Integer> word: sortedReiting){
-            if(count == 10)break;
-            System.out.println(word.getKey() + " " + word.getValue());
+            if(count == 10 && !word.getValue().equals(""))break;
+            System.out.println("\t" + (count+1) + ":" + "\t" +  word.getKey());
             count++;
         }
-
-        textAnalyzer.bracketChecker(text);
+        System.out.println("\n");
+       System.out.println("Bracket Checker: " + textAnalyzer.bracketChecker(text));
 
     }
 

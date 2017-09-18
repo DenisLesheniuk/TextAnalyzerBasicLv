@@ -8,6 +8,5 @@ package ml.ledv.textanalyzerbascilv.service;
  **/
 public interface FileHandler {
     public String textExtractor(String filePath);
-    public boolean isFileOk();
     public boolean fileValidation(String filePath);
 };

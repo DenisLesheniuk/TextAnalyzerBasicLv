@@ -48,9 +48,15 @@ public class TextAnalizerImpl implements TextAnalyzer {
 
         return sortedRating;
     }
-
+/**
+ * The method used stack to check matching brackets
+ * @param  text is an incoming text
+ * @return result = correct/incorrect
+ *
+ * **/
     @Override
     public String bracketChecker(String text) {
+        String result = "";
         boolean correctMark = true;
         LinkedList<Character> stack = new LinkedList<>();
         for(int i = 0 ; i < text.length(); i++){
@@ -71,28 +77,29 @@ public class TextAnalizerImpl implements TextAnalyzer {
                         if(ch.equals('}') && !chr.equals('{') ||
                                 ch.equals(')') && !chr.equals('(') ||
                                 ch.equals('[') && !chr.equals(']'))
-                                    System.out.println("incorrect");
+                                    result = "incorrect";
                                     correctMark = false;
 
                     }else{
-                        System.out.println("incorrect");
+                        result = "incorrect";
                         correctMark = false;
                     }
-
                     break;
                     default:
                         break;
             }
         }
         if(!stack.isEmpty()){
-            System.out.println("incorrect");
+            result = "incorrect";
             correctMark = false;
         }
 
-        if(correctMark)System.out.println("correct");
-        return null;
-    }
+        if(correctMark) {
+            result = "correct";
+        }
 
+        return result;
+    }
 
     /**
      * The method excludes from text a number of predefined words.

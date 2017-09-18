@@ -4,6 +4,13 @@ import ml.ledv.textanalyzerbascilv.controller.ProcessController;
 
 import java.util.Scanner;
 
+/**
+ * The class provides method star() for starting app in the console.
+ *
+ * @author Denis Lesheniuk
+ * @version 1.0
+ * **/
+
 public class ConsoleUI {
 ProcessController processController;
 
@@ -16,7 +23,8 @@ ProcessController processController;
       System.out.println("Text Analizer v.1.0");
 
         while(!processController.isProcess()) {
-            System.out.println("Для начала анализа текста введите путь к файлу :");
+            System.out.println("Для начала анализа текста введите путь к файлу :\n" +
+                    "Пример : F://file_name.txt");
             Scanner scanner = new Scanner(System.in);
             String path = scanner.nextLine();
             processController.doAnalize(path);

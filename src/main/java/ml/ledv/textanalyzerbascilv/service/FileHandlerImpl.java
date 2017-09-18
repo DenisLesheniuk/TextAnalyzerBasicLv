@@ -36,12 +36,6 @@ public class FileHandlerImpl implements FileHandler{
 
      */
     public boolean fileValidation(String filePath){
-        File file = new File(filePath);
-        if(!file.exists()){
-            System.out.println("Не могу найти данный файл, попробуйте снова!!!\n");
-            fileOk = false;
-            return fileOk;
-        }
         if(filePath.length() == 0) {
             System.out.println("Упс... Вы забыли ввести путь к файлу...\n");
             fileOk = false;
@@ -49,6 +43,13 @@ public class FileHandlerImpl implements FileHandler{
         }
         if(!filePath.endsWith(".txt")){
             System.out.println("Неверный формат файла!!!\n");
+            fileOk = false;
+            return fileOk;
+        }
+
+        File file = new File(filePath);
+        if(!file.exists()){
+            System.out.println("Не могу найти данный файл, попробуйте снова!!!\n");
             fileOk = false;
             return fileOk;
         }

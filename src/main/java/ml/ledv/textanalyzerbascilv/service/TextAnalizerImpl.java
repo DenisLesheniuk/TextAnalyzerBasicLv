@@ -23,34 +23,73 @@ public class TextAnalizerImpl implements TextAnalyzer {
     }
 /**
  * The method counts duplicate words in the text,
- * and return the result in the form of a word usage rating
+ * and return the result in the form of a word usage rating.
  *
  * @param text is an incoming text for analyzing.
- * @return sorted raiting List.
+ * @return sorted rating List.
  * **/
     @Override
     public List <Map.Entry<String, Integer>> topTenRepeatingWords(String text) {
         String cleaneText = excludeSpecifiedWords(text);
         String[] words = cleaneText.split("[^А-Яа-я+-]+");
-        Map<String, Integer> reiting = new HashMap<>();
+        Map<String, Integer> rating = new HashMap<>();
         for(String word: words){
             if(!word.equals("")&&!word.equals("-")) {
                //word = word.toLowerCase();
-                if (reiting.containsKey(word))
-                    reiting.put(word, reiting.get(word) + 1);
-                else reiting.put(word, 0);
+                if (rating.containsKey(word))
+                    rating.put(word, rating.get(word) + 1);
+                else rating.put(word, 0);
             }
         }
-        List<Map.Entry<String, Integer>> sortedReiting = reiting.entrySet().stream()
+        List<Map.Entry<String, Integer>> sortedRating = rating.entrySet().stream()
                 .sorted((e1, e2) -> -e1.getValue().compareTo(e2.getValue()))
                 .collect(Collectors.toList());
 
 
-        return sortedReiting;
+        return sortedRating;
     }
 
     @Override
     public String bracketChecker(String text) {
+        boolean correctMark = true;
+        LinkedList<Character> stack = new LinkedList<>();
+        for(int i = 0 ; i < text.length(); i++){
+            correctMark = true;
+            Character ch = text.charAt(i);
+
+            switch (ch){
+                case '{':
+                case '(':
+                case '[':
+                    stack.push(ch);
+                    break;
+                case '}':
+                case ')':
+                case ']':
+                    if(!stack.isEmpty()){
+                        Character chr = stack.pop();
+                        if(ch.equals('}') && !chr.equals('{') ||
+                                ch.equals(')') && !chr.equals('(') ||
+                                ch.equals('[') && !chr.equals(']'))
+                                    System.out.println("incorrect");
+                                    correctMark = false;
+
+                    }else{
+                        System.out.println("incorrect");
+                        correctMark = false;
+                    }
+
+                    break;
+                    default:
+                        break;
+            }
+        }
+        if(!stack.isEmpty()){
+            System.out.println("incorrect");
+            correctMark = false;
+        }
+
+        if(correctMark)System.out.println("correct");
         return null;
     }
 

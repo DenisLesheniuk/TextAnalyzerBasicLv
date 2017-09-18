@@ -39,10 +39,12 @@ public class ProcessController {
         List<Map.Entry<String, Integer>> sortedReiting = textAnalyzer.topTenRepeatingWords(text);
         int count = 0;
         for(Map.Entry<String, Integer> word: sortedReiting){
-            if(count == 10)return;
+            if(count == 10)break;
             System.out.println(word.getKey() + " " + word.getValue());
             count++;
         }
+
+        textAnalyzer.bracketChecker(text);
 
     }
 

@@ -4,6 +4,16 @@ import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+
+/**
+ * This class provides methods for analyzing text
+ *
+ * @author Denis Lesheniuk
+ * @version 1.0
+ *
+ * **/
+
+
 public class TextAnalizerImpl implements TextAnalyzer {
 
     private StopWords stopWords;
@@ -11,7 +21,13 @@ public class TextAnalizerImpl implements TextAnalyzer {
     public TextAnalizerImpl() {
         this.stopWords = new StopWords();
     }
-
+/**
+ * The method counts duplicate words in the text,
+ * and return the result in the form of a word usage rating
+ *
+ * @param text is an incoming text for analyzing.
+ * @return sorted raiting List.
+ * **/
     @Override
     public List <Map.Entry<String, Integer>> topTenRepeatingWords(String text) {
         String cleaneText = excludeSpecifiedWords(text);

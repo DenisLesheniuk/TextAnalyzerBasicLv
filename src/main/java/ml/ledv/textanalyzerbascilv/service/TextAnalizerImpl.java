@@ -25,16 +25,16 @@ public class TextAnalizerImpl implements TextAnalyzer {
                 else reiting.put(word, 0);
             }
         }
-        List<Map.Entry<String, Integer>> list = reiting.entrySet().stream()
+        List<Map.Entry<String, Integer>> sortedReiting = reiting.entrySet().stream()
                 .sorted((e1, e2) -> -e1.getValue().compareTo(e2.getValue()))
                 .collect(Collectors.toList());
 
 
-        return list;
+        return sortedReiting;
     }
 
     @Override
-    public String BracketChecker(String text) {
+    public String bracketChecker(String text) {
         return null;
     }
 

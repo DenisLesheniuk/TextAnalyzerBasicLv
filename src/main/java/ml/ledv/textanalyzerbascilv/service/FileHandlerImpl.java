@@ -1,15 +1,12 @@
 package ml.ledv.textanalyzerbascilv.service;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * Implementation of {@link FileHandler} interface.
- *
+ * This class provides methods for file processing and file validation.
  * @author Denis Lesheniuk
- * @version 1.0
+ * @version 1.1
  **/
 public class FileHandlerImpl implements FileHandler{
     private boolean fileOk = false;
@@ -38,14 +35,20 @@ public class FileHandlerImpl implements FileHandler{
      * @return true if the file is validated, else @return false
 
      */
-    private boolean fileValidation(String filePath){
+    public boolean fileValidation(String filePath){
+        File file = new File(filePath);
+        if(!file.exists()){
+            System.out.println("Не могу найти данный файл, попробуйте снова!!!\n");
+            fileOk = false;
+            return fileOk;
+        }
         if(filePath.length() == 0) {
-            System.out.println("Emtpy file path!");
+            System.out.println("Упс... Вы забыли ввести путь к файлу...\n");
             fileOk = false;
             return fileOk;
         }
         if(!filePath.endsWith(".txt")){
-            System.out.println("Invalid file format!");
+            System.out.println("Неверный формат файла!!!\n");
             fileOk = false;
             return fileOk;
         }

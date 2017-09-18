@@ -11,5 +11,5 @@ import java.util.Map;
 
 public interface TextAnalyzer {
     public List<Map.Entry<String, Integer>> topTenRepeatingWords(String text);
-    public String  BracketChecker(String text);
+    public String bracketChecker(String text);
 }

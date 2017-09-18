@@ -1,7 +1,7 @@
 package ml.ledv.textanalyzerbascilv.service;
 
 /**
- * Service for receiving stop words in the format String.
+ * This class provides methods for receiving stop words in the format String.
  *
  * @author Denis Lesheniuk
  * @version 1.0

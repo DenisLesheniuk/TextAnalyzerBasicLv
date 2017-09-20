@@ -18,16 +18,18 @@ public class FileHandlerImpl implements FileHandler {
      * @return text in String format
      */
     public String textExtractor(String filePath) {
-        String text = "";
+        StringBuilder textBuilder = new StringBuilder();
         if (fileValidation(filePath)) {
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"))) {
-                while (bufferedReader.ready())
-                    text += bufferedReader.readLine() + "\n";
+                while (bufferedReader.ready()) {
+                    textBuilder.append(bufferedReader.readLine()).append("\n");
+                }
             } catch (IOException exc) {
                 exc.printStackTrace();
             }
         }
-        return text;
+
+        return textBuilder.toString();
     }
 
     /**

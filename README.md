@@ -1,6 +1,6 @@
 ## An application that allows you to analyze the text in the file.
 
-#####Functional:
+####Functional:
 	
 Counting the number of repeated words in the text. Conjunctions, prepositions and pronouns are excluded from the statistics.
  

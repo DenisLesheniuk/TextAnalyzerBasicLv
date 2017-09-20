@@ -24,14 +24,16 @@ public class FileHandlerImplForResources implements FileHandler {
 
      */
     public String textExtractor(String filePath) {
-        String text = "";
-            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/" + filePath), "UTF-8"))) {
-                while (bufferedReader.ready())
-                    text += bufferedReader.readLine() + "\n";
-            } catch (IOException exc) {
-                exc.printStackTrace();
+        StringBuilder textBuilder = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/" + filePath), "UTF-8"))) {
+            while (bufferedReader.ready()) {
+                textBuilder.append(bufferedReader.readLine()).append("/n");
             }
-        return text;
+
+        } catch (IOException exc) {
+            exc.printStackTrace();
+        }
+        return textBuilder.toString();
     }
 
     /**
